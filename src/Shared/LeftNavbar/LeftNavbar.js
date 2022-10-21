@@ -11,7 +11,6 @@ const LeftNavbar = () => {
   }, []);
   return (
     <div>
-      <h1>This is the LeftNavbar {news.length}</h1>
       {news.map((n) => (
         <p key={n.id}>
           <Link to={`category/${n.id}`}>{n.name}</Link>

@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Button, Image } from "react-bootstrap";
+import { PersonCircle } from "react-bootstrap-icons";
 
 import Container from "react-bootstrap/Container";
 
@@ -9,7 +11,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/ContextProvider/ContextProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then((result) => {})
+      .catch((e) => console.log(e));
+  };
   return (
     <Navbar
       collapseOnSelect
@@ -40,11 +47,30 @@ const Header = () => {
             </NavDropdown>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+            <Nav.Link href="#deets">{console.log(user)}</Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              <Link to="/login">Login</Link>
-              <Link to="/login">Logut</Link>
+              {user ? (
+                <>
+                  <Link onClick={handleLogout}>Logout</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/login">Login</Link>
+                  <Link to="/register">Register</Link>
+                </>
+              )}
             </Nav.Link>
+            <Link to="/profile">
+              {user?.photoURL ? (
+                <Image
+                  src={user.photoURL}
+                  style={{ width: "50px" }}
+                  roundedCircle
+                ></Image>
+              ) : (
+                <PersonCircle></PersonCircle>
+              )}
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

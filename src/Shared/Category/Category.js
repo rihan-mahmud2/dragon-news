@@ -1,11 +1,14 @@
 import React from "react";
 import { useLoaderData } from "react-router-dom";
+import CardCategories from "../CardCategories/CardCategories";
 
 const Category = () => {
   const news = useLoaderData();
   return (
     <div>
-      <h1>This category has {news.length}</h1>
+      {news.map((n) => (
+        <CardCategories key={n._id} n={n}></CardCategories>
+      ))}
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const LeftNavbar = () => {
   const [news, setNews] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/")
+    fetch("https://dragon-news-server-phi-lovat.vercel.app/")
       .then((res) => res.json())
       .then((data) => setNews(data))
       .catch((err) => console.log(err));

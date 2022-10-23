@@ -48,7 +48,7 @@ const Header = () => {
           </Nav>
           <Nav>
             <Nav.Link href="#deets">{console.log(user)}</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
+            <span href="#memes">
               {user ? (
                 <>
                   <Link onClick={handleLogout}>Logout</Link>
@@ -59,7 +59,7 @@ const Header = () => {
                   <Link to="/register">Register</Link>
                 </>
               )}
-            </Nav.Link>
+            </span>
             <Link to="/profile">
               {user?.photoURL ? (
                 <Image
